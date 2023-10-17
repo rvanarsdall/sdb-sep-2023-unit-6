@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const userController = require("./controllers/user.controller");
+const petController = require("./controllers/pet.controller");
 
 const mongoose = require("mongoose");
 
@@ -18,6 +19,8 @@ db.once("open", () => {
 app.use(express.json()); // this will parse any json data that is sent with the request
 
 app.use("/user", userController);
+
+app.use("/pet", petController);
 
 app.listen(PORT, () => {
   console.log(`server is running on port: ${PORT}`);

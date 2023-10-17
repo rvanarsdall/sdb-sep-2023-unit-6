@@ -7,93 +7,361 @@
 	},
 	"item": [
 		{
-			"name": "Register",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"firstname\": \"Shelly\",\n    \"lastname\": \"Goat\",\n    \"email\": \"test1@test.com\",\n    \"password\": \"password1234\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "User",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstname\": \"Nelly\",\n    \"lastname\": \"Goat\",\n    \"email\": \"test2@test.com\",\n    \"password\": \"password1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/user/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"user",
+								"register"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:4000/user/register",
-					"protocol": "http",
-					"host": [
-						"localhost"
+				{
+					"name": "Sign In",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response has a message property\", function () {",
+									"    pm.expect(pm.response.json()).to.have.property('message');",
+									"});",
+									"",
+									"pm.test(\"Response has a user property\", function () {",
+									"    pm.expect(pm.response.json()).to.have.property('user');",
+									"});",
+									"",
+									"pm.test(\"Response has a token property\", function () {",
+									"    pm.expect(pm.response.json()).to.have.property('token');",
+									"});",
+									"",
+									"pm.test(\"User object has the required properties\", function () {",
+									"    var user = pm.response.json().user;",
+									"    pm.expect(user).to.have.property('_id');",
+									"    pm.expect(user).to.have.property('firstname');",
+									"    pm.expect(user).to.have.property('lastname');",
+									"    pm.expect(user).to.have.property('email');",
+									"    pm.expect(user).to.have.property('password');",
+									"    pm.expect(user).to.have.property('__v');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
 					],
-					"port": "4000",
-					"path": [
-						"user",
-						"register"
-					]
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test1@test.com\",\n    \"password\": \"password1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/user/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"user",
+								"signin"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Sign In",
-			"event": [
+			"name": "Pet",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Response has a message property\", function () {",
-							"    pm.expect(pm.response.json()).to.have.property('message');",
-							"});",
-							"",
-							"pm.test(\"Response has a user property\", function () {",
-							"    pm.expect(pm.response.json()).to.have.property('user');",
-							"});",
-							"",
-							"pm.test(\"Response has a token property\", function () {",
-							"    pm.expect(pm.response.json()).to.have.property('token');",
-							"});",
-							"",
-							"pm.test(\"User object has the required properties\", function () {",
-							"    var user = pm.response.json().user;",
-							"    pm.expect(user).to.have.property('_id');",
-							"    pm.expect(user).to.have.property('firstname');",
-							"    pm.expect(user).to.have.property('lastname');",
-							"    pm.expect(user).to.have.property('email');",
-							"    pm.expect(user).to.have.property('password');",
-							"    pm.expect(user).to.have.property('__v');",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"email\": \"test1@test.com\",\n    \"password\": \"password1234\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+					"name": "Pet Add",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response has a message property\", function () {",
+									"    pm.expect(pm.response.json()).to.have.property('message');",
+									"});",
+									"",
+									"pm.test(\"Response has a user property\", function () {",
+									"    pm.expect(pm.response.json()).to.have.property('user');",
+									"});",
+									"",
+									"pm.test(\"Response has a token property\", function () {",
+									"    pm.expect(pm.response.json()).to.have.property('token');",
+									"});",
+									"",
+									"pm.test(\"User object has the required properties\", function () {",
+									"    var user = pm.response.json().user;",
+									"    pm.expect(user).to.have.property('_id');",
+									"    pm.expect(user).to.have.property('firstname');",
+									"    pm.expect(user).to.have.property('lastname');",
+									"    pm.expect(user).to.have.property('email');",
+									"    pm.expect(user).to.have.property('password');",
+									"    pm.expect(user).to.have.property('__v');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
 						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:4000/user/signin",
-					"protocol": "http",
-					"host": [
-						"localhost"
 					],
-					"port": "4000",
-					"path": [
-						"user",
-						"signin"
-					]
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"So Angry Today\",\n    \"description\": \"Fido did eat any of my shoes today\",\n    \"imageURL\": \"image here\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/pet/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"pet",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Pet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response has a message property\", function () {",
+									"    pm.expect(pm.response.json()).to.have.property('message');",
+									"});",
+									"",
+									"pm.test(\"Response has a user property\", function () {",
+									"    pm.expect(pm.response.json()).to.have.property('user');",
+									"});",
+									"",
+									"pm.test(\"Response has a token property\", function () {",
+									"    pm.expect(pm.response.json()).to.have.property('token');",
+									"});",
+									"",
+									"pm.test(\"User object has the required properties\", function () {",
+									"    var user = pm.response.json().user;",
+									"    pm.expect(user).to.have.property('_id');",
+									"    pm.expect(user).to.have.property('firstname');",
+									"    pm.expect(user).to.have.property('lastname');",
+									"    pm.expect(user).to.have.property('email');",
+									"    pm.expect(user).to.have.property('password');",
+									"    pm.expect(user).to.have.property('__v');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"UPDATEDS\",\n    \"description\": \"Fido did eat any of my shoes today\",\n    \"imageURL\": \"image here - updated\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/pet/update/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"pet",
+								"update",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "652ebf067539226b18e907ab"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Pets",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response has a message property\", function () {",
+									"    pm.expect(pm.response.json()).to.have.property('message');",
+									"});",
+									"",
+									"pm.test(\"Response has a user property\", function () {",
+									"    pm.expect(pm.response.json()).to.have.property('user');",
+									"});",
+									"",
+									"pm.test(\"Response has a token property\", function () {",
+									"    pm.expect(pm.response.json()).to.have.property('token');",
+									"});",
+									"",
+									"pm.test(\"User object has the required properties\", function () {",
+									"    var user = pm.response.json().user;",
+									"    pm.expect(user).to.have.property('_id');",
+									"    pm.expect(user).to.have.property('firstname');",
+									"    pm.expect(user).to.have.property('lastname');",
+									"    pm.expect(user).to.have.property('email');",
+									"    pm.expect(user).to.have.property('password');",
+									"    pm.expect(user).to.have.property('__v');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"My Dog is the Best!\",\n    \"description\": \"Fido did not eat any of my shoes today\",\n    \"imageURL\": \"image here\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/pet/view-all/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"pet",
+								"view-all",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pet Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response has a message property\", function () {",
+									"    pm.expect(pm.response.json()).to.have.property('message');",
+									"});",
+									"",
+									"pm.test(\"Response has a user property\", function () {",
+									"    pm.expect(pm.response.json()).to.have.property('user');",
+									"});",
+									"",
+									"pm.test(\"Response has a token property\", function () {",
+									"    pm.expect(pm.response.json()).to.have.property('token');",
+									"});",
+									"",
+									"pm.test(\"User object has the required properties\", function () {",
+									"    var user = pm.response.json().user;",
+									"    pm.expect(user).to.have.property('_id');",
+									"    pm.expect(user).to.have.property('firstname');",
+									"    pm.expect(user).to.have.property('lastname');",
+									"    pm.expect(user).to.have.property('email');",
+									"    pm.expect(user).to.have.property('password');",
+									"    pm.expect(user).to.have.property('__v');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"My Dog is the Best!\",\n    \"description\": \"Fido did not eat any of my shoes today\",\n    \"imageURL\": \"image here\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/pet/delete/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"pet",
+								"delete",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "652e9c074931d0fbfeb13eca"
+								}
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		}
 	]
 }
