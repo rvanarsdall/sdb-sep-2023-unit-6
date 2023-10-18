@@ -12,6 +12,10 @@ const PetSchema = new mongoose.Schema({
   imageURL: {
     type: String,
   },
+  ownerId: {
+    type: mongoose.Types.ObjectId,
+    ref: "User",
+  },
 });
 
 module.exports = mongoose.model("Pet", PetSchema);
